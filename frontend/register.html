@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to CSS file -->
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Register</h2>
+            <form method="POST" action="" id="form">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required placeholder="Enter Username">
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Enter Password">
+
+                <label for="password2">Confirm Password</label>
+                <input type="password" id="password2" name="password2" required placeholder="Enter Password Again">
+
+                <button type="submit">Register</button>
+                <p>Already have an account? <a href="/login/">Login here</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    const baseUrl = "http://127.0.0.1:8000/todo";
+    const form = document.getElementById("form");
+
+    const signUp = async (event) => {
+        event.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const password2 = document.getElementById("password2").value;
+
+        if (!username || !password || !password2) {
+            alert("Please enter all details");
+            return;
+        }
+
+        if (password !== password2) {
+            alert("Password are not matching, Please enter same password!");
+            return;
+        }
+
+        try {
+            const res = await fetch(`${baseUrl}/register/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username, password })
+            })
+
+            const data = await res.json();
+
+            if (data?.message) {
+                alert(data.message + " Please login!");
+                window.location.href = "login.html";
+            } else {
+                alert(data.error);
+            }
+            
+
+        } catch (err) {
+            console.log(err, "Error in signup function")
+        }
+    }
+
+    form.addEventListener("submit", signUp)
+</script>
+</html>
