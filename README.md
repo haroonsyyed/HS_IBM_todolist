@@ -35,3 +35,53 @@ This To-Do List application allows users to create, edit, delete, and organize t
 
 ### Getting Started
 
+1. Clone the repository.
+
+    ```shell
+    git clone github.com/haroonsyyed/HS_IBM_todolist.git
+    ```
+
+2. Navigate to the backend directory.
+
+    ```shell
+    cd todo-app-backend
+    ```
+
+3. Set up and activate a virtual environment.
+
+    ```shell
+    python -m venv env
+    source env/bin/activate  # On Windows, use `env\Scripts\activate`
+    ```
+
+4. Install dependencies.
+
+    ```shell
+    pip install -r requirements.txt
+    ```
+
+5. Run database migrations.
+
+    ```shell
+    python manage.py makemigrations
+    python manage.py migrate
+    ```
+
+6. Start the development server.
+
+    ```shell
+    python manage.py runserver
+    ```
+
+7. Navigate to the frontend directory.
+
+    ```shell
+    cd todo-app-frontend
+    ```
+
+2. Serve the frontend files.
+
+    ```shell
+    npx serve .
+    ```
+    
